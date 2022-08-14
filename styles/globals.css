@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Shabnam';
+  src: local('Shabnam'), url('../public/Shabnam/Farsi-Digits/Shabnam-Light-FD.woff') format('woff');
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+	
+  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
+}
+
+* {
+  box-sizing: border-box;
+	font-family: "Shabnam";
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
