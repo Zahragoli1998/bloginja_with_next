@@ -2,15 +2,17 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
+import { useAppContext } from "../../context/state";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
   const router = useRouter();
   const cookies = new Cookies();
+	const { isEdited,setIsEdited } = useAppContext();
 
 	useEffect(() => {
 		cookies.remove("token")
-
+		setIsEdited(!isEdited)
 	}, [])
 	
 
@@ -28,8 +30,10 @@ const Login = () => {
       })
         .then((res) => res.json())
         .then((data) => {
+					console.log(data);
           if (data.token) {
             cookies.set("token", data.token);
+            setIsEdited(!isEdited)
             router.replace("/");
           }
         });
@@ -48,11 +52,11 @@ const Login = () => {
         </span>
         <div className="w-[80%] flex flex-col gap-2">
           <label className="text-lg font-semibold text-right" for={"name"}>
-            نام
+            نام کاربری
           </label>
           <input
             id="name"
-            className="border-2 rounded-lg p-3 w-full bg-white/10 border-black"
+            className="border-2 text-right rounded-lg p-3 w-full bg-white/10 border-black"
             onChange={(e) => setUserName(e.target.value)}
           />
         </div>
@@ -63,11 +67,11 @@ const Login = () => {
           <input
             type={"password"}
             id="pass"
-            className="border-2 rounded-lg p-3 w-full bg-white/10 border-black"
+            className="border-2  rounded-lg p-3 w-full bg-white/10 border-black"
           />
         </div>
         <button
-          className="border-2 rounded-xl p-3 w-[80%] text-white text-xl font-semibold bg-black border-black"
+          className="border-2  rounded-xl p-3 w-[80%] text-white text-xl font-semibold bg-black border-black"
           onClick={() => register()}
         >
           ورود

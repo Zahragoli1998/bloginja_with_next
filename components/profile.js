@@ -28,7 +28,7 @@ const Profile = () => {
       {token ? (
         <div className="">
           <div className="flex flex-row-reverse items-center gap-4">
-            <p className="hidden md:block">! خوش آمدید {userInfo.name}</p>
+            <span className="hidden md:block"><span>{userInfo.name} </span>خوش آمدید</span>
             <div className="">
 							<Link href={"/dashboard"}><img src="/img/icons8-user-64.png" className="w-6 h-6 cursor-pointer"/></Link>
 						</div>

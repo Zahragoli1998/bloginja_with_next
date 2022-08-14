@@ -10,7 +10,7 @@ const TopWriters = ({ topWriters }) => {
           <span className="text-white font-medium text-xl">نویسندگان برتر</span>
         </div>
       </div>
-      <div>
+      <div className="flex flex-row-reverse gap-8">
         {topWriters.map((user) => {
           return (
             <div className="flex flex-col items-center gap-2">
