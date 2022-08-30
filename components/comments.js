@@ -6,7 +6,6 @@ const Comments = ({ blogID, getPersianDate }) => {
   const [comments, setComments] = useState([]);
   const [isAdded, setIsAdded] = useState(false);
   const cookies = new Cookies();
-  console.log(comments);
 
   useEffect(() => {
     fetch(`http://localhost:4000/comment/by-blog/${blogID}`)

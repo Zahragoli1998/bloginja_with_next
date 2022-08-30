@@ -1,7 +1,9 @@
+import { useRouter } from "next/router";
 import React from "react";
 
 const TopWriters = ({ topWriters }) => {
-  console.log(topWriters);
+	const router = useRouter()
+
   return (
     <div className="w-full min-h-[300px] mt-10 flex lg:flex-row-reverse flex-col items-center lg:gap-20 gap-8  ">
       <div className="relative p-6">
@@ -13,8 +15,13 @@ const TopWriters = ({ topWriters }) => {
       <div className="flex flex-row-reverse gap-8">
         {topWriters.map((user) => {
           return (
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-24 h-24 bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 rounded-full flex items-center justify-center">
+            <div className="flex flex-col items-center gap-2 cursor-pointer" onClick={()=>{
+							router.replace({
+								pathname: "/userBlogs/[userBlogs]",
+								query: { userBlogs: user._id },
+							});
+						}}>
+              <div className="w-24 h-24 bg-gradient-to-r from-blue-500 via-red-500 to-yellow-500 rounded-full flex items-center justify-center hover:shadow-xl">
                 <div className="w-[88px] h-[88px] bg-white rounded-full ">
                   <img
                     className="w-full h-full p-1"

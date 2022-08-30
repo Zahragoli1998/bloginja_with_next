@@ -10,8 +10,12 @@ const Signup = () => {
   const cookies = new Cookies();
   const router = useRouter();
 	const { isEdited,setIsEdited } = useAppContext();
-  
+	const [notFound,setNotFound] = useState(false)
 
+  
+	useEffect(() => {
+		setNotFound(false)
+	}, [])
 
   const register = () => {
     try {
@@ -32,18 +36,13 @@ const Signup = () => {
 						setIsEdited(!isEdited)
             router.replace("/");
           }
+					else{
+						setNotFound(true)
+						}
         });
     } catch (error) {
       console.log(error);
     }
-
-    // const data = res.json().then((ut) => {
-    //   if (ut.token) {
-    //     console.log("token hast");
-    //     cookies.set("token", ut.token);
-    //     router.replace("/");
-    //   }
-    // });
   };
 
   return (
@@ -55,6 +54,7 @@ const Signup = () => {
           خوش <span className="text-yellow-500">آمدید</span>
         </span>
         <div className="w-[80%] flex flex-col gap-2">
+				{notFound? <span className="text-red-600 text-right text-sm font-medium">این کاربر ثبت نام شده است یا فیلدی ناقص است</span>:null}
           <label className="text-lg font-semibold text-right" for={"name"}>
             نام
           </label>

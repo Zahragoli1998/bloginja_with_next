@@ -9,10 +9,12 @@ const Login = () => {
   const router = useRouter();
   const cookies = new Cookies();
 	const { isEdited,setIsEdited } = useAppContext();
+	const [notFound,setNotFound] = useState(false)
 
 	useEffect(() => {
 		cookies.remove("token")
 		setIsEdited(!isEdited)
+		setNotFound(false)
 	}, [])
 	
 
@@ -30,12 +32,14 @@ const Login = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-					console.log(data);
           if (data.token) {
             cookies.set("token", data.token);
             setIsEdited(!isEdited)
             router.replace("/");
           }
+					else{
+          setNotFound(true)
+					}
         });
     } catch (error) {
       console.log(error);
@@ -51,6 +55,7 @@ const Login = () => {
           خوش <span className="text-yellow-500">آمدید</span>
         </span>
         <div className="w-[80%] flex flex-col gap-2">
+					{notFound? <span className="text-red-600 text-right text-sm font-medium">نام کاربری یا رمز عبور اشتباه است</span>:null}
           <label className="text-lg font-semibold text-right" for={"name"}>
             نام کاربری
           </label>

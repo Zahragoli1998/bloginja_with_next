@@ -12,7 +12,6 @@ const SideBar = () => {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [myBlogs, setMyBlogs] = useState([]);
-  console.log(myBlogs);
   const [user, setUser] = useState("");
   const [urls, setUrls] = useState([
     {
@@ -32,7 +31,7 @@ const SideBar = () => {
     },
     {
       title: "خروج",
-      url: "",
+      url: "/login",
       isSelected: false,
     },
   ]);

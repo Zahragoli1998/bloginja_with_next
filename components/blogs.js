@@ -3,9 +3,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-import DashboardLayout from "../../components/dashboardLayout";
 
-const Dashboard = () => {
+const Blogs = ({url}) => {
   const cookies = new Cookies();
   const token = cookies.get("token");
   const router = useRouter();
@@ -23,13 +22,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:4000/blog/my-blogs", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        auth: `ut ${cookies.get("token")}`,
-      },
-    })
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         const newarr = [...data];
@@ -41,7 +34,6 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <DashboardLayout>
       <div className="w-full flex justify-center flex-wrap gap-4 mt-10">
         {myBlogs.map((blog, i) => {
           return (
@@ -92,17 +84,6 @@ const Dashboard = () => {
                     className="border-2 p-1 w-[100px] rounded-lg hover:bg-yellow-400 hover:border-yellow-400"
                     onClick={() =>
                       router.replace({
-                        pathname: "/dashboard/[editBlog]",
-                        query: { editBlog: blog._id },
-                      })
-                    }
-                  >
-                    ویرایش
-                  </button>
-                  <button
-                    className="border-2 p-1 w-[100px] rounded-lg hover:bg-yellow-400 hover:border-yellow-400"
-                    onClick={() =>
-                      router.replace({
                         pathname: "/[sibgleBlog]",
                         query: { sibgleBlog: blog._id },
                       })
@@ -116,8 +97,7 @@ const Dashboard = () => {
           );
         })}
       </div>
-    </DashboardLayout>
   );
 };
 
-export default Dashboard;
+export default Blogs;

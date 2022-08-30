@@ -10,7 +10,6 @@ const Edit = () => {
   const [type, settype] = useState("");
   const [user, setUser] = useState("");
   const { isEdited, setIsEdited } = useAppContext();
-  console.log("user", user);
 
   const editUser = () => {
     fetch("http://localhost:4000/user/edit", {
@@ -26,7 +25,6 @@ const Edit = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.msg === "ok") {
           setIsEdited(!isEdited);
         }

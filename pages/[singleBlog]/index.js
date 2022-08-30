@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import Comments from "../../components/comments";
 import Emojies from "../../components/Emojies";
@@ -37,7 +37,6 @@ const SingleBlog = ({ Blog }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.msg === "ok") {
           router.replace(router.asPath);
         } else {
